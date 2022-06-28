@@ -1,7 +1,5 @@
 #!/bin/bash
 
-tmp_conf=$(mktemp "/tmp/config_${kernelversion}.XXXXXXXXXX")
-echo "temporary_config_file: ${tmp_conf}"
 
 usage() {
   printf "Usage: $0 [-k][options]\n"
@@ -93,6 +91,9 @@ fi
 
 export BINPKG_COMPRESS="xz" XZ_OPT="--x86 --lzma2=preset=9e,dict=128MB,nice=273,depth=200,lc=4"
 
+# create temporary configuration file used for configuration download and patching
+tmp_conf=$(mktemp "/tmp/config_${kernelversion}.XXXXXXXXXX")
+echo "temporary_config_file: ${tmp_conf}"
 
 remove_old_kernel
 prepare_kernel
